@@ -1,0 +1,29 @@
+11. Container With Most Water
+
+
+class Solution {
+    public int maxArea(int[] height) {
+        if(height.length==0 || height.length==1) return 0;
+        int global_max=0;
+        int start=0;
+        int end=height.length-1;
+        while(start<end){
+            //length of smaller one is taken 
+            int l=Math.min(height[start],height[end]);
+            int b=end -start;
+            int area=l*b;
+            global_max=Math.max(global_max,area);
+            // max length does not affect area as we shrink width length increse might increase area
+            if(height[start]<=height[end]) start++;
+            else if(height[start]>height[end]) end--;
+        }
+        // for(int i=0;i<height.length-1;i++){
+        //     int local_max=0;
+        //     for(int j=i+1;j<height.length;j++){
+        //          local_max=Math.max(local_max,(Math.min(height[i],height[j])*(j-i)));
+        //     }
+        //     global_max=Math.max(global_max,local_max);
+        // }
+        return global_max;
+    }
+}
