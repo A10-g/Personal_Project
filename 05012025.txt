@@ -1,0 +1,35 @@
+//1930. Unique Length-3 Palindromic Subsequences
+
+
+class Solution {
+    public int countPalindromicSubsequence(String s) {
+        if(s.length()<3) return 0;
+//to store all the plindromic subsequences
+        HashSet<String> ans=new HashSet<>();
+//to store the characters to the left o the mid char
+        HashSet<Character> hs=new HashSet<>();
+// to store the characters to the right of mid char with their count
+ 
+       HashMap<Character,Integer> mp=new HashMap<>();
+    
+//insert in the hashmap the chars with thier count   
+        for(int i=0;i<s.length();i++){
+            mp.put(s.charAt(i),mp.getOrDefault(s.charAt(i),0)+1);
+        }
+
+//now check for left char's occurance in right of mid
+        for(int i=0;i<s.length();i++){
+//decrese the count of the char from right of mid to store in right hashset
+            mp.put(s.charAt(i),mp.get(s.charAt(i))-1);
+//iterate through the hasaset and check if its there in right, if there insert into ans hashset ans palindrome
+            for(Character c: hs){
+                if(mp.containsKey(c) && mp.get(c)>0){
+                    ans.add(""+s.charAt(i)+c);
+                }
+            }
+            hs.add(s.charAt(i));
+        }
+//return  unique palindromes
+        return ans.size();
+    }
+}
