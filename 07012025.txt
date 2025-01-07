@@ -1,0 +1,22 @@
+//16. 3Sum Closest
+
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        //ArrayList<Integer> arr=new ArrayList<>();
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<nums.length;i++){
+            int start=i+1;
+            int end=nums.length-1;
+            while(start<end){
+                int x=(nums[i]+nums[start]+nums[end]);
+                if(x==target) return target;
+                else if(x>target) end--;    
+                else if(x<target) start++;
+                if(Math.abs(x-target)<Math.abs(target-min))
+                    min=x;
+            }
+        }
+        return min;
+    }
+}
