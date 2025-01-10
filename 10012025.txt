@@ -1,0 +1,42 @@
+//916. Word Subsets
+
+class Solution {
+    public List<String> wordSubsets(String[] words1, String[] words2) {
+        HashMap<Character, Integer> universe=new HashMap<>();
+        for(int i=0;i<words2.length;i++){
+            HashMap<Character, Integer> galaxy=new HashMap<>();
+            for(int j=0;j<words2[i].length();j++){
+                galaxy.put(words2[i].charAt(j),galaxy.getOrDefault(words2[i].charAt(j),0)+1);
+            }
+
+            for(Map.Entry<Character,Integer> ls:galaxy.entrySet()){
+                int count=ls.getValue();
+                char l=ls.getKey();
+                if(universe.containsKey(l)){
+                    universe.put(l,Math.max(universe.get(l),count));
+                }
+                else
+                    universe.put(l,count);
+            }
+        }
+        List<String> ans=new ArrayList<>();
+        for(int i=0;i<words1.length;i++){
+            HashMap<Character,Integer> m1=new HashMap<>();
+            for(int j=0;j<words1[i].length();j++){
+                m1.put(words1[i].charAt(j),m1.getOrDefault(words1[i].charAt(j),0)+1);
+            }
+            boolean flag=true;
+            for(Map.Entry<Character, Integer> ls: universe.entrySet()){
+                char c=ls.getKey();
+                int freq=ls.getValue();
+                if(!m1.containsKey(c) || m1.get(c)<freq){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag)
+                ans.add(words1[i]);
+        }
+        return ans;
+    }
+}
