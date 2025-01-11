@@ -1,0 +1,57 @@
+//271 Encode decode string
+
+class Solution {
+
+    public String encode(List<String> strs) {
+        if(strs.size()==1) return strs.get(0);
+        String st="0x86";
+        for(String s:strs){
+            st+=(s+"0x86");
+        }
+        return st;
+    }
+
+    public List<String> decode(String str) {
+        List<String> ans=new ArrayList<>();
+        if(str.equals("")) {
+            ans.add(str);
+            return ans;
+        }
+        String s[]=str.split("0x86");
+        if(s.length==1)
+            ans.add(s[0]);
+
+        for(int i=1;i<s.length;i++){
+            ans.add(s[i]);
+        }
+        return ans;
+    }
+}
+
+
+//sol2
+
+
+class Solution {
+
+    public String encode(List<String> strs) {
+        StringBuilder ans=new StringBuilder();
+        for(String s:strs){
+            char len=(char) s.length();
+            ans=ans.append(len).append(s);
+        }
+        return ans.toString();
+    }
+
+    public List<String> decode(String str) {
+        List<String> ans=new ArrayList<>();
+        int i=0;
+        while(i<str.length()){
+            int size=str.charAt(i++);
+            String s=str.substring(i,i+size);
+            ans.add(s);
+            i+=size;
+        }
+        return ans;
+    }
+}
