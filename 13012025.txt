@@ -1,0 +1,52 @@
+//3223. Minimum Length of String After Operations
+
+class Solution {
+    public int minimumLength(String s) {
+        Map<Character,Integer>left=new HashMap<>();
+        Map<Character,Integer>right=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char letter=s.charAt(i);
+            right.put(letter,right.getOrDefault(letter,0)+1);
+        }
+
+        for(int i=0;i<s.length();i++){
+            char letter=s.charAt(i);
+            if(right.get(letter)<=0) continue;
+            right.put(letter,right.get(letter)-1);
+            if((left.containsKey(letter) && left.get(letter)>0) && (right.containsKey(letter) && right.get(letter)>0)){
+                right.put(letter,right.get(letter)-1);
+                left.put(letter,left.get(letter)-1);
+            }
+            left.put(letter,left.getOrDefault(letter,0)+1);
+        }
+        int count=0;
+        for(Map.Entry<Character,Integer> ls:left.entrySet()){
+            System.out.println(ls.getKey());
+            System.out.println(ls.getValue());
+            if(ls.getValue()>0)
+                count+=ls.getValue();
+        }
+        
+        return count;
+    }
+}
+
+//soln 2
+
+class Solution {
+    public int minimumLength(String s) {
+        Map<Character,Integer>map=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char letter=s.charAt(i);
+            map.put(letter,map.getOrDefault(letter,0)+1);
+        }
+        int count=0;
+        for(Map.Entry<Character,Integer> ls:map.entrySet()){
+            while(ls.getValue()>=3){
+                ls.setValue(ls.getValue()-2);
+            }
+            count+=ls.getValue();
+        }
+        return count;
+    }
+}
