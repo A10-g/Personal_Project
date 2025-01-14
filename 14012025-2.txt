@@ -1,0 +1,21 @@
+//3223. Minimum Length of String After Operations
+
+class Solution {
+    public int minimumLength(String s) {
+        Map<Character,Integer>map=new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char letter=s.charAt(i);
+            map.put(letter,map.getOrDefault(letter,0)+1);
+        }
+        int count=0;
+        for(Map.Entry<Character,Integer> ls:map.entrySet()){
+            // while(ls.getValue()>=3){
+            //     ls.setValue(ls.getValue()-2);
+            // }
+            // count+=ls.getValue();
+            if(ls.getValue()%2==0) count+=2;
+            if(ls.getValue()%2!=0) count+=1;
+        }
+        return count;
+    }
+}
