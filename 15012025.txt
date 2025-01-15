@@ -1,0 +1,21 @@
+//3330. Find the Original Typed String I
+
+class Solution {
+    public int possibleStringCount(String word) {
+        // HashMap<Character,Integer> freq=new HashMap<>();
+        int count=1;
+
+        char prev=word.charAt(0);
+        for(int i=1;i<word.length();i++){
+            // freq.put(word.charAt(i),freq.getOrDefault(word.charAt(i),0)+1);
+            if(word.charAt(i)==prev) count++;
+            prev=word.charAt(i);
+        }
+        // for(Map.Entry<Character,Integer> ls:freq.entrySet()){
+        //     if(ls.getValue()>1){
+        //         count+=ls.getValue()-1;
+        //     }
+        // }
+        return count;
+    }
+}

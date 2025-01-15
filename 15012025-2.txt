@@ -1,0 +1,29 @@
+//844. Backspace String Compare
+
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        return getString(s).equals(getString(t));
+    }
+
+    public String getString(String s){
+        Stack<Character> st=new Stack<>();
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+            if(c=='#'){
+                if(!st.empty())
+                    st.pop();
+                else
+                    continue;    
+            }
+            else{
+                st.push(c);
+            }
+        }
+        StringBuffer str=new StringBuffer();
+        while(!st.empty()){
+            str.append(st.pop());
+        }
+        str=str.reverse();
+        return str.toString();
+    }
+}

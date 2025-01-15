@@ -1,0 +1,31 @@
+class Solution {
+    public int minimizeXor(int num1, int num2) {
+        int countnum1=Integer.bitCount(num1);
+        int countnum2=Integer.bitCount(num2);
+
+        if(countnum1==countnum2) return num1;
+        int x=(num1);
+        int count=Math.abs(countnum2-countnum1);
+        int bit=1;
+        if(countnum2>countnum1){
+            while(count>0){
+                if((x&bit)==0){
+                    x=x^bit;
+                    count--;
+                }
+                bit=bit<<1;
+            }
+        }
+        else{
+           while(count>0){
+            if((x&bit)!=0){
+                int y=~bit;
+                x&=y;
+                count--;
+            }
+            bit=bit<<1;
+           }
+        }
+        return x;
+    }
+}
