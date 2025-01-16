@@ -1,0 +1,29 @@
+//2425. Bitwise XOR of All Pairings
+
+class Solution {
+    public int xorAllNums(int[] nums1, int[] nums2) {
+        // HashSet<Integer> h1=new HashSet<>();
+        // HashSet<Integer> h2=new HashSet<>();
+        int n1=nums1.length;
+        int n2=nums2.length;
+        if(n1%2!=0 && n2%2==0){
+            return calculateXOR(nums2);
+        }
+        else if(n1%2==0 && n2%2!=0){
+            return calculateXOR(nums1);
+
+        }
+        else if(n1%2!=0 && n2%2!=0){
+            return calculateXOR(nums1)^calculateXOR(nums2);
+        }
+            return 0;
+        }
+
+    public int calculateXOR(int num[]){
+        int ans=0;
+        for (int i=0;i<num.length;i++){
+            ans^=num[i];
+        }
+        return ans;
+    }
+}
