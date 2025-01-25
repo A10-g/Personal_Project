@@ -1,0 +1,38 @@
+//503. Next Greater Element II
+
+class Solution {
+    public int[] nextGreaterElements(int[] nums) {
+        int n=nums.length;
+        int nums2[]=new int[n*2];
+        int ans[]=new int[n];
+        Arrays.fill(ans,-1);
+        for(int i=0;i<n;i++){
+            nums2[i]=nums[i];
+        }
+        for(int i=0;i<n;i++){
+            nums2[i+n]=nums[i];
+        }
+        Stack<Integer>st=new Stack<>();
+        for(int i=0;i<n;i++){
+            while(!st.isEmpty() && nums2[i]>nums2[st.peek()]){
+                int j=st.peek();
+                if(ans[j]==-1){
+                    ans[j]=nums2[i];
+                }
+                st.pop();
+            }
+            st.push(i);
+        }
+        for(int i=n;i<2*n;i++){
+            while(!st.isEmpty() && nums2[i]>nums2[st.peek()]){
+                int j=st.peek();
+                if(ans[j]==-1){
+                    ans[j]=nums2[i];
+                }
+                st.pop();
+            }
+            st.push(i-n);
+        }
+        return ans;
+    }
+}
