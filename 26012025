@@ -1,0 +1,24 @@
+//3432. Count Partitions with Even Sum Difference
+
+class Solution {
+    public int countPartitions(int[] nums) {
+        int n=nums.length;
+        int prefix[]=new int[n];
+        prefix[0]=nums[0];
+        for(int i=1;i<n;i++){
+            prefix[i]=prefix[i-1]+nums[i];
+        }
+        int start=0;
+        int count=0;
+        int leftsum=0;
+        int rightsum=0;
+        while(start<n-1){
+            leftsum=prefix[start];
+            rightsum=prefix[n-1]-prefix[start];
+            if(Math.abs(leftsum-rightsum)%2==0)
+                count++;
+            start++;    
+        }
+        return count;
+    }
+}
