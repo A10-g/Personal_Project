@@ -1,0 +1,38 @@
+//345. Reverse Vowels of a String
+
+class Solution {
+    public String reverseVowels(String s) {
+        String str[]=s.split("");
+        int st=0;
+        int e=s.length()-1;
+        HashSet<String> hs=new HashSet<>();
+        hs.add("a");
+        hs.add("e");
+        hs.add("i");
+        hs.add("o");
+        hs.add("u");
+       // s=s.toLowerCase();
+        while(st<e){
+            if(hs.contains(str[st].toLowerCase()) && hs.contains(str[e].toLowerCase())){
+                String temp=str[st];
+                str[st]=str[e];
+                str[e]=temp;
+            }
+            else if(hs.contains(str[st].toLowerCase()) && !hs.contains(str[e].toLowerCase())){
+                e--;
+                continue;
+            }
+            else if(!hs.contains(str[st].toLowerCase()) && hs.contains(str[e].toLowerCase())){
+                st++;
+                continue;
+            }
+            st++;
+            e--;
+        }
+        StringBuffer ans=new StringBuffer();
+        for(int i=0;i<str.length;i++){
+            ans.append(str[i]);
+        }
+        return ans.toString();
+    }
+}
