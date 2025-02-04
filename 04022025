@@ -1,0 +1,20 @@
+//1800. Maximum Ascending Subarray Sum
+
+class Solution {
+    public int maxAscendingSum(int[] nums) {
+        int Maxsum=nums[0];
+        int currsum=nums[0];
+        int left=0;
+        int right=1;
+        while(right<nums.length){
+            if(nums[right-1]<nums[right]){
+                currsum+=nums[right];
+            }else{
+                currsum=nums[right];
+            }
+            Maxsum=Math.max(Maxsum,currsum);
+            right++;
+        }
+        return Maxsum;
+    }
+}
