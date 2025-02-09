@@ -1,0 +1,27 @@
+//3442. Maximum Difference Between Even and Odd Frequency I
+
+class Solution {
+    public int maxDifference(String s) {
+        int[] alp=new int[26];
+        for(int i=0;i<26;i++){
+        alp[i]=0;
+        }
+        for(int i=0;i<s.length();i++){
+            alp[s.charAt(i)-'a']++;
+        }
+        int maxodd=0;
+        int maxeven=999999999;
+        for(int i=0;i<26;i++){
+            if(alp[i]!=0 && alp[i]%2==0 ){
+                maxeven=Math.min(maxeven,alp[i]);
+                System.out.println(maxeven);
+            }
+            if(alp[i]!=0 && alp[i]%2!=0 ){
+                maxodd=Math.max(maxodd,alp[i]);
+                System.out.println(maxodd);
+            }
+        }
+        return maxodd-maxeven;
+        
+    }
+}
