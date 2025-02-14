@@ -1,0 +1,30 @@
+//1352. Product of the Last K Numbers
+
+class ProductOfNumbers {
+
+    ArrayList<Integer>list;
+    public ProductOfNumbers() {
+        list=new ArrayList();
+    }
+    
+    public void add(int num) {
+        list.add(num);
+    }
+    
+    public int getProduct(int k) {
+        int n=list.size();
+        int i=n-k;
+        int prod=1;
+        for(int j=i;j<n;j++){
+            prod*=list.get(j);
+        }
+        return prod;
+    }
+}
+
+/**
+ * Your ProductOfNumbers object will be instantiated and called as such:
+ * ProductOfNumbers obj = new ProductOfNumbers();
+ * obj.add(num);
+ * int param_2 = obj.getProduct(k);
+ */
