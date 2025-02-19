@@ -1,0 +1,15 @@
+//392. Is Subsequence
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int sn=s.length();
+        int tn=t.length();
+        int i=0;
+        int j=0;
+        while(i<sn && j<tn){
+            if(s.charAt(i)==t.charAt(j)) i++;
+            j++;
+        }
+        return i==sn ?true:false;
+    }
+}
