@@ -1,0 +1,32 @@
+//682. Baseball Game
+
+class Solution {
+    public int calPoints(String[] operations) {
+        Stack<Integer>score=new Stack<>();
+        int ans=0;
+        for(int i=0;i<operations.length;i++){
+                // if(!score.isEmpty()){
+            if(operations[i].equals("+")){
+                    int f1=score.pop();
+                    int f2=score.pop();
+                    score.push(f2);
+                    score.push(f1);
+                    score.push(f1+f2);
+            }
+            else if(operations[i].equals("D")){
+                score.push(2*score.peek());
+            }
+            else if(operations[i].equals("C")){
+               // if(!score.isEmpty())
+                score.pop();
+            }
+              else
+                score.push(Integer.parseInt(operations[i]));
+           //}    
+        }
+        while(!score.isEmpty()){
+            ans+=score.pop();
+        }
+        return ans;
+    }
+}
