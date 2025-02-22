@@ -1,0 +1,22 @@
+//3452. Sum of Good Numbers
+
+class Solution {
+    public int sumOfGoodNumbers(int[] nums, int k) {
+        int sum=0;
+        int i=k;
+        while(i<nums.length-k){
+           if(nums[i]>nums[i+k] && nums[i]>nums[i-k])
+                sum+=nums[i]; 
+            i++;
+        }
+        for(int j=i;j<nums.length;j++){
+           if(nums[j]>nums[j-k])
+                sum+=nums[j];
+        }
+        for(i=0;i<k;i++){
+           if(nums[i]>nums[i+k])
+                sum+=nums[i];
+        }
+        return sum;
+    }
+}
