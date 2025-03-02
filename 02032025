@@ -1,0 +1,50 @@
+//2570. Merge Two 2D Arrays by Summing Values
+
+class Solution {
+    public int[][] mergeArrays(int[][] nums1, int[][] nums2) {
+        int i1=0;
+        int i2=0;
+        int i3=Math.max(nums1[nums1.length-1][0],nums2[nums2.length-1][0]);
+        List<int[]> nums3=new ArrayList<>();
+        //int [][]nums3=new int[i3][2];
+        while(i1<nums1.length && i2<nums2.length){
+            if(nums1[i1][0]==nums2[i2][0]){
+                int arr[]=new int[2];
+                arr[0]=nums1[i1][0];
+                arr[1]=nums1[i1][1]+nums2[i2][1];
+                nums3.add(arr);
+                i2++;
+                i1++;
+            }
+            else if(nums1[i1][0]<nums2[i2][0]){
+                int arr[]=new int[2];
+                arr[0]=nums1[i1][0];
+                arr[1]=nums1[i1][1];
+                nums3.add(arr);
+                i1++;
+            }
+            else if(nums1[i1][0]>nums2[i2][0]){
+                int arr[]=new int[2];
+                arr[0]=nums2[i2][0];
+                arr[1]=nums2[i2][1];
+                nums3.add(arr);
+                i2++;
+            }
+        }
+        while(i1<nums1.length){
+                 int arr[]=new int[2];
+                arr[0]=nums1[i1][0];
+                arr[1]=nums1[i1][1];
+                nums3.add(arr);
+                i1++;
+        }
+        while(i2<nums2.length){
+                int arr[]=new int[2];
+                arr[0]=nums2[i2][0];
+                arr[1]=nums2[i2][1];
+                nums3.add(arr);
+                i2++;
+        }
+        return nums3.toArray(new int[nums3.size()][]);
+    }
+}
