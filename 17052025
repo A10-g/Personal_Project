@@ -1,0 +1,10 @@
+//2206. Divide Array Into Equal Pairs
+
+class Solution {
+    public boolean divideArray(int[] nums) {
+        Map<Integer, Long> freqMap = Arrays.stream(nums)
+                .boxed() // Convert int[] to Stream<Integer>
+                .collect(Collectors.groupingBy(n -> n, Collectors.counting()));
+        return freqMap.values().stream().allMatch(count -> count % 2 == 0);
+    }
+}
