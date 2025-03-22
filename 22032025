@@ -1,0 +1,29 @@
+//703. Kth Largest Element in a Stream
+
+class KthLargest {
+    private int k;
+    private PriorityQueue<Integer> num;
+
+    public KthLargest(int k, int[] nums) {
+        this.k=k;
+        num=new PriorityQueue<>(k);
+        int n=nums.length,i=0;
+        for (int pq : nums) {
+            num.offer(pq);
+            if (num.size() > k) num.poll(); 
+        }
+        
+    }
+    
+    public int add(int val) {
+        num.offer(val);
+        if(num.size()>k) num.poll();
+        return num.peek();
+    }
+}
+
+/**
+ * Your KthLargest object will be instantiated and called as such:
+ * KthLargest obj = new KthLargest(k, nums);
+ * int param_1 = obj.add(val);
+ */
