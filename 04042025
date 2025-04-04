@@ -1,0 +1,16 @@
+//628. Maximum Product of Three Numbers
+
+class Solution {
+    public int maximumProduct(int[] nums) {
+        
+        long res1=Arrays.stream(nums)
+                        .boxed()
+                        .sorted((a,b)->Integer.compare(b,a))
+                        .mapToLong(a->a)
+                        .limit(3)
+                        .reduce(1,(a,b)->a*b);
+       Arrays.sort(nums);
+       long res2=nums[0]*nums[1]*nums[nums.length-1];            
+        return (int)Math.max(res1,res2);
+    }
+}
