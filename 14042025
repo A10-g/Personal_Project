@@ -1,0 +1,26 @@
+//1534. Count Good Triplets
+
+class Solution {
+    public int countGoodTriplets(int[] arr, int a, int b, int c) {
+        int N=arr.length,count=0;
+        int prefix[]=new int[1001];
+        for(int i=0;i<N;i++){
+            for(int j=i+1;j<N;j++){
+                if(Math.abs(arr[i]-arr[j])<=b){
+                    int left=Math.max(0,Math.max(arr[i]-a,arr[j]-c));
+                    int right=Math.min(1000,Math.min(arr[i]+a,arr[j]+c));
+                    if(left<=right){
+                    if(left==0)    
+                        count+=prefix[right];
+                    else
+                        count+=prefix[right]-prefix[left-1];
+                    }
+                }
+            }
+            for(int x=arr[i];x<=1000;x++){
+                prefix[x]++;
+            }
+        }
+        return count;
+    }
+}
