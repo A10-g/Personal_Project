@@ -1,0 +1,20 @@
+//2537. Count the Number of Good Subarrays
+
+class Solution {
+    public long countGood(int[] nums, int k) {
+        int i=0,j=0,n=nums.length;
+        long cnt=0;
+        Map<Integer,Integer> mp=new HashMap();
+        while(i<n){
+            k-=mp.getOrDefault(nums[i],0);
+            mp.put(nums[i],mp.getOrDefault(nums[i],0)+1);
+            while(k<=0){
+                mp.put(nums[j],mp.get(nums[j])-1);
+                k+=mp.get(nums[j++]);
+            }
+            cnt+=j;
+            i++;
+        }
+        return cnt;
+    }
+}
