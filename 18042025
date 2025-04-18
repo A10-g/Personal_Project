@@ -1,0 +1,27 @@
+//38. Count and Say
+
+class Solution {
+    public String countAndSay(int n) {
+        if(n==1) return "1";
+        String res="1";
+        for(int i=1;i<n;i++){
+            res=getString(res);
+        }
+        return res;
+    }
+    public String getString(String s){
+        StringBuilder str=new StringBuilder();
+        int count=1;
+        for(int i=1;i<s.length();i++){
+            if(s.charAt(i-1)==s.charAt(i)){
+                count++;
+            }
+            else{
+                str.append(count).append(s.charAt(i-1));
+                count=1;
+            }
+        }
+        str.append(count).append(s.charAt(s.length()-1));
+        return str.toString();
+    }
+}
