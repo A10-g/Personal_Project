@@ -1,0 +1,23 @@
+//2563. Count the Number of Fair Pairs
+
+class Solution {
+    public long countFairPairs(int[] nums, int lower, int upper) {
+        Arrays.sort(nums);
+        return count(nums,lower)-count(nums,upper+1);
+    }
+
+    public long count(int []nums,int tar){
+        long ans=0;
+        int n=nums.length-1;
+        int i=0;
+        while(i<n){
+            if(nums[i]+nums[n]>=tar){
+                ans+=(n-i);
+                n--;
+            }
+            else
+                i++;
+        }
+        return ans;
+    }
+}
