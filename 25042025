@@ -1,0 +1,17 @@
+//2845. Count of Interesting Subarrays
+class Solution {
+    public long countInterestingSubarrays(List<Integer> nums, int modulo, int k) {
+        long count=0,equals=0;
+        Map<Integer,Long> mp=new HashMap<>();
+        mp.put(0,1L);
+        for(int i: nums){
+            if(i % modulo ==k) equals++;
+            int rem=(int)(equals %modulo);
+            int needed=(rem-k+modulo)%modulo;
+            count+=mp.getOrDefault(needed,0L);
+            mp.put(rem,mp.getOrDefault(rem,0L)+1);
+
+        }
+        return count;
+    }
+}
