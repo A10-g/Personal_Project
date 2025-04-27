@@ -1,0 +1,13 @@
+//3392. Count Subarrays of Length Three With a Condition
+
+class Solution {
+    public int countSubarrays(int[] nums) {
+        int count=0;
+        for(int second=1;second<nums.length-1;second++){
+            int third=second+1;
+            int first=second-1;
+           if(2*(nums[first]+nums[third])==nums[second]) count++;
+        }
+        return count;
+    }
+}
