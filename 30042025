@@ -1,0 +1,7 @@
+//1295. Find Numbers with Even Number of Digits
+
+class Solution {
+    public int findNumbers(int[] nums) {
+        return (int)Arrays.stream(nums).map(s->Integer.toString(s).length()).filter(a->a%2==0).count();
+    }
+}
