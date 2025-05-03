@@ -1,0 +1,48 @@
+//1007. Minimum Domino Rotations For Equal Row
+
+class Solution {
+    public int minDominoRotations(int[] tops, int[] bottoms) {
+    //     int top1=(tops[0]);
+    //     int bottom1=(bottoms[0]);
+    //     int topcount=(int)Arrays.stream(tops).filter(a->{if(a==top1 || a==bottom1) 
+    //                                                         return true; 
+    //                                                     return false;}
+    //                                         ).count();
+    //     int bottomcount=(int)Arrays.stream(bottoms).filter(a->{if(a==top1 || a==bottom1) 
+    //                                                         return true; 
+    //                                                     return false;}
+    //                                         ).count();
+
+    //     if(top1!=tops.length || bottom1!=bottoms.length)
+    //         return -1;
+    //     return Math.min(count(tops,tops[0]),count(bottoms,bottoms[0]));    
+    // }
+
+    // public int count(int arr[],int num){
+
+        
+        int res=999999999;
+        for(int i=1;i<=6;i++){
+                boolean not=false;
+                int swap1=0;
+                int swap2=0;
+                
+            for(int j=0;j<tops.length;j++){
+                if(tops[j]==i && bottoms[j]==i)
+                    continue;
+                else if(tops[j]==i)
+                    swap1++;
+                else if(bottoms[j]==i)
+                    swap2++; 
+                else {
+                    not=true;
+                    break;
+                }
+            }
+            if(!not)
+                res=Math.min(res,Math.min(swap1,swap2));
+        }
+        if(res==999999999) return -1;
+        return res;
+    }
+}
