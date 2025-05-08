@@ -1,0 +1,17 @@
+//2558. Take Gifts From the Richest Pile
+
+class Solution {
+    public long pickGifts(int[] gifts, int k) {
+        PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)->b-a);
+        for(int i:gifts)    
+            pq.add(i);
+        for(int i=1;i<=k;i++){
+            pq.add((int)Math.sqrt(pq.poll()));
+        }  
+        long ans=0;  
+        for(int i:pq){
+            ans+=i;
+        }
+        return ans;
+    }
+}
