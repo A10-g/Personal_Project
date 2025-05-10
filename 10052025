@@ -1,0 +1,35 @@
+//2918. Minimum Equal Sum of Two Arrays After Replacing Zeros
+
+class Solution {
+    public long minSum(int[] nums1, int[] nums2) {
+        long nums1sum=calculateSum(nums1);
+        long nums2sum=calculateSum(nums2);
+        if(nums1sum>nums2sum){
+            if(containsZero(nums2))
+                return nums1sum;
+            else return -1;
+        }
+        else if(nums1sum<nums2sum){
+            if(containsZero(nums1))
+                return nums2sum;
+            else return -1;
+        }
+        return nums1sum;
+    }
+
+    public long calculateSum(int arr[]){
+        long countZero=0,sum=0;
+        for(int i:arr){
+            if(i==0) countZero++;
+            sum+=i;
+        }
+        return sum+countZero;
+    }
+
+    public boolean containsZero(int arr[]){
+        for(int i:arr){
+            if(i==0) return true;
+        }
+        return false;
+    }
+}
