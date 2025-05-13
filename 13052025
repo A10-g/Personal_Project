@@ -1,0 +1,30 @@
+//3335. Total Characters in String After Transformations I
+
+class Solution {
+    public int lengthAfterTransformations(String s, int t) {
+        final int MOD = 1000000007;
+        int freq[]=new int[26];
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        for(int i=0;i<t;i++){
+            int[] tmp = new int[26];
+            for(int j=0;j<26;j++){
+                if (j == 25) {
+                    tmp[0] = (tmp[0] + freq[j]) % MOD;
+                    tmp[1] = (tmp[1] + freq[j]) % MOD;
+                } else {
+                    tmp[j + 1] = (tmp[j + 1] + freq[j]) % MOD;
+                }
+            }
+            freq=tmp;
+        }
+        int len = 0;
+        for (int c : freq) {
+            len = (len + c) % MOD;
+        }
+
+        return len;
+    }
+}
