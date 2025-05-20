@@ -1,0 +1,35 @@
+// 3355. Zero Array Transformation I
+
+class Solution {
+    public boolean isZeroArray(int[] nums, int[][] queries) {
+        // for(int i=0;i<queries.length;i++){
+        //     for(int j=queries[i][0];j<=queries[i][1];j++){
+        //         if(nums[j]>0) nums[j]-=1;
+        //         //System.out.println(nums[0]);
+        //     }
+        //     int count=0;
+        //     for(int j=0;j<nums.length;j++){
+        //         if(nums[j]>0) 
+        //         {
+        //             count++;
+        //         break;
+        //         }
+        //     }
+        //     if(count==0) return true;
+        // }
+       int n=nums.length;
+       int [] prefix=new int[n+1];
+       for(int i=0;i<queries.length;i++){
+        prefix[queries[i][0]]+=1;
+        prefix[queries[i][1]+1]-=1;
+       }
+       for(int i=1;i<prefix.length;i++){
+        prefix[i]+=prefix[i-1];
+       }
+
+       for(int i=0;i<n;i++){
+        if(nums[i]>prefix[i]) return false;
+       }
+        return true;
+    }
+}
