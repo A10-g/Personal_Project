@@ -1,0 +1,30 @@
+//2566. Maximum Difference by Remapping a Digit
+
+class Solution {
+    public int minMaxDifference(int num) {
+        String str=Integer.toString(num);
+        char[] maxchar=str.toCharArray();
+        char[] minchar=str.toCharArray();
+
+        char replaceformax=' ';
+        for(char c: maxchar){
+            if(c!='9'){
+                replaceformax=c;
+                break;
+            }
+        }
+
+        for(int i=0;i<maxchar.length;i++){
+            if(maxchar[i]==replaceformax)
+                maxchar[i]='9';
+        }
+        char replaceformin=minchar[0];
+        for(int i=0;i<minchar.length;i++){
+            if(minchar[i]==replaceformin)
+                minchar[i]='0';
+        }
+        int maxval=Integer.parseInt(new String(maxchar));
+        int minval=Integer.parseInt(new String(minchar));
+        return maxval-minval;
+    }
+}
