@@ -1,0 +1,38 @@
+//1432. Max Difference You Can Get From Changing an Integer
+
+class Solution {
+    public int maxDiff(int num) {
+        String number=Integer.toString(num);
+        char[] maxnum=number.toCharArray();
+        char[] minnum=number.toCharArray();
+        char firstmaxnum=maxnum[0];
+        for(int i=0;i<maxnum.length;i++){
+            if(maxnum[i]!='9'){
+                firstmaxnum=maxnum[i];
+                break;
+            }
+        }
+        char firstminnum=minnum[0];
+        boolean miniszero=false;
+        for(int i=0;i<minnum.length;i++){
+            if(minnum[i]!='1' && minnum[i]!='0'){
+                if(i!=0)  
+                    miniszero=true;
+                firstminnum=minnum[i];
+                break;
+            }
+        }
+        for(int i=0;i<maxnum.length;i++){
+            if(maxnum[i]==firstmaxnum)
+                maxnum[i]='9';
+        }
+        for(int i=0;i<minnum.length;i++){
+            if(minnum[i]==firstminnum && miniszero)
+                minnum[i]='0';
+            else if(minnum[i]==firstminnum && !miniszero)
+                minnum[i]='1';
+                    
+        }
+        return Integer.parseInt(new String(maxnum))-Integer.parseInt(new String(minnum));
+    }
+}
