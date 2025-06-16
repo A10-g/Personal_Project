@@ -1,0 +1,18 @@
+//2016. Maximum Difference Between Increasing Elements
+
+class Solution {
+    public int maximumDifference(int[] nums) {
+        int mn=nums[0],mx=0;;
+        int s=1,e=nums.length-1;
+        while(s<nums.length){
+            if(nums[s]>mn){
+                mx=Math.max(mx,nums[s]-mn);
+            }
+            else{
+                mn=nums[s];
+            }
+            s++;
+        }
+        return mx==0? -1 : mx ;
+    }
+}
