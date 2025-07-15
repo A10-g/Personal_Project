@@ -1,0 +1,42 @@
+//15072025
+
+class Solution {
+    public boolean isValid(String word) {
+        word=word.toLowerCase();
+        if(word.length()<3) return false;
+        HashSet<Character> vowels=new HashSet();
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+        boolean hasVowel=false;
+        boolean hasDigit=false;
+        boolean hasSpecialChar=false;
+        boolean hasConsonant=false;
+        for(int i=0;i<word.length();i++){
+            char curr=word.charAt(i);
+            if(curr-'a'>=0 && 'z'-curr>=0){
+            if(vowels.contains(curr)){
+                hasVowel=true;
+                System.out.println("v");
+            }
+            else {
+                hasConsonant=true;
+                System.out.println("c");
+            }
+            }
+            else if(curr-'0'>=0 && '9'-curr>=0){
+                System.out.println("d");
+                hasDigit=true;
+            }
+            else{
+                return false;
+            }
+        }
+        if(hasVowel&&hasConsonant==true){
+            return true;
+        }
+        return false;
+    }
+}
