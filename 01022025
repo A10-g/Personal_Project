@@ -1,6 +1,5 @@
 
-//3151. Special Array I
-
+    //3151. Special Array I
 class Solution {
     public boolean isArraySpecial(int[] nums) {
         if(nums.length==1) return true;
